@@ -8,6 +8,8 @@ permissions:
   id-token: write
   contents: read
 
+# env:
+#   GITHUB_OWNER: "yuga-labs"
 
 jobs:
   deploy:
@@ -27,11 +29,17 @@ jobs:
       working-directory: pulumi
       run: npm ci
 
+    - name: Extract branch name
+      shell: bash
+      run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}} | tr / -)" >> $GITHUB_OUTPUT
+      id: extract_branch
+
     - uses: pulumi/actions@v3
       with:
         command: up
-        stack-name: bryan-rhm/yugalabs/dev
+        stack-name: bryan-rhm/yugalabs/${{ steps.extract_branch.outputs.BRANCH_NAME }}
         work-dir: pulumi
+        upsert: true
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
