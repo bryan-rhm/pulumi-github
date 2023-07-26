@@ -3,12 +3,15 @@ import * as github from "@pulumi/github";
 import * as aws from "@pulumi/aws";
 import { main } from "@pulumi/pulumi/provider";
 
+const stackName = pulumi.getStack();
+const repoName  = process.env.REPOSITORY_NAME
+
 const repo = github.getRepository({
-    name: "pulumi-github",
+    name: repoName,
 });
 
 const repositoryEnvironment = new github.RepositoryEnvironment("repositoryEnvironment", {
-    environment: "dev",
+    environment: stackName,
     repository: repo.then(repo => repo.name),
 });
 
