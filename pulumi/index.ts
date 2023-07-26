@@ -12,9 +12,9 @@ const repositoryEnvironment = new github.RepositoryEnvironment("repositoryEnviro
     repository: repo.then(repo => repo.name),
 });
 
-// const exampleVariable = new github.ActionsEnvironmentVariable("exampleVariable", {
-//     repository: repo.then(repo => repo.name),
-//     environment: repositoryEnvironment.environment,
-//     variableName: "example_variable_name",
-//     value: "example_variable_value",
-// });
+const exampleVariable = new github.ActionsEnvironmentVariable("exampleVariable", {
+    repository: repo.then(repo => repo.name),
+    environment: repositoryEnvironment.environment,
+    variableName: "example_variable_name",
+    value: "example_variable_value",
+});

@@ -20,6 +20,18 @@ jobs:
     - uses: actions/setup-node@v3.5.0
       with:
         node-version: 18
+        
+    - name: Get cache key for Node.js modules
+      id: cache
+      run: echo "::set-output name=key::$(date +'%Y-%m-%d')-$(hashFiles('pulumi/package-lock.json'))"
+
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: pulumi/node_modules
+        key: ${{ runner.os }}-node-${{ steps.cache.outputs.key }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
     - name: Install Dependencies
       working-directory: pulumi
