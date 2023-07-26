@@ -8,6 +8,7 @@ permissions:
   id-token: write
   contents: read
 
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -30,5 +31,5 @@ jobs:
         stack-name: bryan-rhm/yugalabs/dev
         work-dir: pulumi
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
