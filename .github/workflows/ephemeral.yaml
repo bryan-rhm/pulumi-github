@@ -13,7 +13,7 @@ jobs:
 
     - uses: actions/setup-node@v3.5.0
       with:
-        node-version-file: pulumi/package.json
+        node-version: 18
 
     - name: Install Dependencies
       working-directory: pulumi
