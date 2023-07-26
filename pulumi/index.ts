@@ -3,10 +3,6 @@ import * as github from "@pulumi/github";
 import * as aws from "@pulumi/aws";
 import { main } from "@pulumi/pulumi/provider";
 
-const current = github.getUser({
-    username : ""
-});
-
 const repo = github.getRepository({
     name: "pulumi-github",
 });
