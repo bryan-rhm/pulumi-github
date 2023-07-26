@@ -17,9 +17,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v3.5.0
+    - uses: actions/setup-node@v3.7.0
       with:
         node-version: 18
+        cache: 'npm'
+        cache-dependency-path: pulumi/package-lock.json
 
     - name: Install Dependencies
       working-directory: pulumi
