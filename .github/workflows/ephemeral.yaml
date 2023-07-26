@@ -19,9 +19,6 @@ jobs:
       working-directory: pulumi
       run: npm install
 
-    - name: Install Pulumi CLI
-      uses: pulumi/actions-install-pulumi-cli@v1.0.1
-
     - uses: pulumi/actions@v3
       with:
         command: up
